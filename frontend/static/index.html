@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Image Classification App</title>
+  </head>
+
+  <body>
+    <h1>HelloWorld</h1>
+    <form id="upload-form">
+        <input type="file" id="file-input" accept="image/*" required>
+        <button type="submit">Upload and Classify</button>
+    </form>
+    <div id="result">
+      <img id="preview" style="display: none; max-width: 500px; margin-top: 20px;">
+      <p id="classification-result"></p>
+    </div>
+
+    <script src="/static/renderer.js"></script>
+  </body>
+
+</html>
