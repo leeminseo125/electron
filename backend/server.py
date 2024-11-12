@@ -51,22 +51,25 @@ async def classify_image(file: UploadFile = File(...)):
         print("이미지 전처리 시작")
         image = preprocess_image(image_bytes)
         print("이미지 전처리 완료")
-        print(f"preprocess image type: {type(image)}")
         
         # YOLO 모델 예측
         print("모델 예측 시작")
         results = model(image)
-        for r in results:
-            print(r.probs)
-        print(f"예측 결과: {r.probs}")
+        
+        result = results[0].probs
 
-        return JSONResponse(content={"prediction": r.probs})
+        print(result.top1)
+        print(result.top5)
+        print(result.top1conf)
+        print(result.top5conf)
+
+        return JSONResponse(content={"prediction": result.top1})
         
     except Exception as e:
         print(f"에러 발생: {str(e)}")
         print(f"에러 타입: {type(e)}")
         raise HTTPException(status_code=422, detail=str(e))
-        
+
 
 if __name__ == "__main__":
     import uvicorn
