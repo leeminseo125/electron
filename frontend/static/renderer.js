@@ -36,7 +36,11 @@ document.getElementById('upload-form').addEventListener('submit', async (e) => {
       }
 
       const result = await response.json();
-      resultDiv.textContent = `분류 결과: ${result.prediction}`;
+      console.log('서버 응답:', result);
+      console.log('설정할 텍스트:', `결과: ${result.pred_label}, ${result.pred_class}, ${result.pred_conf}`);
+      resultDiv.style.whiteSpace = 'pre-line';
+      resultDiv.textContent = `결과\n예측 레이블: ${result.pred_label}\n예측 클래스: ${result.pred_class}\n예측 신뢰도: ${result.pred_conf}%`;
+      console.log('설정된 텍스트:', resultDiv.textContent);
   } catch (error) {
       resultDiv.textContent = `오류: ${error.message}`;
       console.error('Error:', error);

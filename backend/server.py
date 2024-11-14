@@ -1,10 +1,12 @@
+import io
+
+from PIL import Image
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from ultralytics import YOLO
-from PIL import Image
-import io
+
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="../frontend/static"), name="static")
@@ -18,6 +20,15 @@ app.add_middleware(
 
 model = YOLO("yolo11n-cls.pt")
 
+class_dict = {}
+with open('imagenet1000_clsidx_to_labels.txt', 'r', encoding='utf-8') as f:
+    for _, line in enumerate(f):
+        line = line.strip().split(': ')
+        class_idx = int(line[0])
+        class_name = line[1]
+        class_name = class_name[1:-2]
+        class_dict[class_idx] = class_name
+
 def preprocess_image(image_bytes):
     image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
     return image
@@ -30,27 +41,19 @@ async def read_root():
 
 @app.post("/classify")
 async def classify_image(file: UploadFile = File(...)):
-    print("함수 시작")  # 함수 시작 지점 확인
     try:
-        print("try 블록 시작")  # try 블록 시작 확인
         
         # 파일이 이미지인지 확인
         if not file.content_type.startswith('image/'):
-            print("이미지 파일 아님")  # 이미지 타입 체크
             raise HTTPException(status_code=400, detail="File must be an image")
         
-        print("파일 정보:")
+        print("파일 정보")
         print(f"Received file: {file.filename}")
         print(f"Content type: {file.content_type}")
         
-        # 파일 읽기
-        print("파일 읽기 시작")
         image_bytes = await file.read()
-        print("파일 읽기 완료")
         
-        print("이미지 전처리 시작")
         image = preprocess_image(image_bytes)
-        print("이미지 전처리 완료")
         
         # YOLO 모델 예측
         print("모델 예측 시작")
@@ -62,8 +65,12 @@ async def classify_image(file: UploadFile = File(...)):
         print(result.top5)
         print(result.top1conf)
         print(result.top5conf)
+        print(class_dict[result.top1])
 
-        return JSONResponse(content={"prediction": result.top1})
+        top1 = result.top1
+        top1conf = float(round(float(result.top1conf.item()), 4)) * 100
+
+        return JSONResponse(content={"pred_label": top1, "pred_conf": top1conf, "pred_class": class_dict[top1]})
         
     except Exception as e:
         print(f"에러 발생: {str(e)}")
