@@ -68,7 +68,7 @@ async def classify_image(file: UploadFile = File(...)):
         print(class_dict[result.top1])
 
         top1 = result.top1
-        top1conf = float(round(float(result.top1conf.item()), 4)) * 100
+        top1conf = round(float(result.top1conf.item()) * 100, 2)
 
         return JSONResponse(content={"pred_label": top1, "pred_conf": top1conf, "pred_class": class_dict[top1]})
         
