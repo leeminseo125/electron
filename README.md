@@ -28,3 +28,19 @@ Start in root directory
 cd frontend
 npm start
 ```
+
+## Packaging
+Start in root directory
+```bash
+cd frontend
+npm install electron-packager --save-dev
+npx electron-packager . MyApp --platform=win32 --arch=x64
+```
+
+## exe File Run
+Start in root directory
+```bash
+cd backend 
+uvicorn server:app --host localhost --port 5000
+```
+Open & Use exe file while your server is running
