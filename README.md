@@ -37,7 +37,7 @@ npm install electron-packager --save-dev
 npx electron-packager . MyApp --platform=win32 --arch=x64
 ```
 
-## exe File Run
+## Run exe File
 Start in root directory
 ```bash
 cd backend 
