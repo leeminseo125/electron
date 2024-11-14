@@ -1,15 +1,16 @@
 {
-    "name": "image_classification_app",
+    "name": "image-classification-app",
     "version": "1.0.0",
+    "description": "Image Classification Desktop App",
     "main": "main.js",
     "scripts": {
-      "start": "electron ."
+      "start": "electron .",
+      "test": "echo \"Error: no test specified\" && exit 1"
     },
+    "author": "",
+    "license": "ISC",
     "devDependencies": {
-      "electron": "^latest"
-    },
-    "dependencies": {
-      "axios": "^latest"
+      "electron": "^29.1.0"
     }
   }
   

@@ -27,7 +27,10 @@ document.getElementById('upload-form').addEventListener('submit', async (e) => {
 
       const response = await fetch('http://localhost:5000/classify', {
           method: 'POST',
-          body: formData
+          body: formData,
+          headers: {
+              'Accept': 'application/json',
+          }
       });
 
       if (!response.ok) {

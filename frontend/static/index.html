@@ -2,21 +2,23 @@
 <html>
 
   <head>
+    <meta charset="UTF-8">
     <title>Image Classification App</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
 
   <body>
-    <h1>HelloWorld</h1>
+    <h1>Image Classification</h1>
     <form id="upload-form">
         <input type="file" id="file-input" accept="image/*" required>
         <button type="submit">Upload and Classify</button>
     </form>
     <div id="result">
-      <img id="preview" style="display: none; max-width: 500px; margin-top: 20px;">
+      <img id="preview" style="display: none;">
       <p id="classification-result"></p>
     </div>
 
-    <script src="/static/renderer.js"></script>
+    <script src="renderer.js"></script>
   </body>
 
 </html>
