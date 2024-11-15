@@ -2,12 +2,9 @@
 
 ## Install 
 ```bash
-conda create -n electron python=3.11 -y
-conda activate electron
-
-pip install -r requirements.txt
+conda env create -f environment.yml
 ```
-Download yolo11n-cls.pt in ultralytics model zoo and put it in the backend folder.
+Download 'yolo11n-cls.pt' in ultralytics model zoo and put it in the backend folder.
 
 ```bash
 cd frontend
