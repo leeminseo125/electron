@@ -10,6 +10,10 @@ Download 'yolo11n-cls.pt' in ultralytics model zoo and put it in the backend fol
 cd frontend
 npm install
 ```
+if not run npm, try
+```bash
+conda install nodejs
+```
 
 ## Run
 #### First Terminal
