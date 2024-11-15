@@ -1,4 +1,3 @@
-import os
 import io
 
 from PIL import Image
@@ -10,7 +9,7 @@ from ultralytics import YOLO
 
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory=os.path.abspath("../frontend/static")), name="static")
+app.mount("/static", StaticFiles(directory="../frontend/static"), name="static")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # 모든 origin 허용
