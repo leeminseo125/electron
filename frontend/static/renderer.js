@@ -22,7 +22,7 @@ document.getElementById('upload-form').addEventListener('submit', async (e) => {
       
       console.log('Sending file:', file.name, file.type);
 
-      const response = await fetch('http://0.0.0.0:8000/classify', {
+      const response = await fetch('http://54.180.86.10:8000/classify', {
           method: 'POST',
           body: formData,
           headers: {
