@@ -4,7 +4,15 @@
   <head>
     <meta charset="UTF-8">
     <title>Image Classification App</title>
-    <link rel="stylesheet" href="styles.css">
+    <script>
+      if (window.process && process.versions['electron']) {
+        // Electron 환경
+        document.write('<link rel="stylesheet" href="styles.css">');
+      } else {
+        // 웹 환경
+        document.write('<link rel="stylesheet" href="/static/styles.css">');
+      }
+    </script>
   </head>
 
   <body>
@@ -18,7 +26,15 @@
       <p id="classification-result"></p>
     </div>
 
-    <script src="renderer.js"></script>
+    <script>
+      if (window.process && process.versions['electron']) {
+        // Electron 환경
+        document.write('<script src="renderer.js"><\/script>');
+      } else {
+        // 웹 환경
+        document.write('<script src="/static/renderer.js"><\/script>');
+      }
+    </script>
   </body>
 
 </html>

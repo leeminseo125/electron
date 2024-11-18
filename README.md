@@ -37,6 +37,11 @@ cd frontend
 npm install electron-packager --save-dev
 npx electron-packager . MyApp --platform=win32 --arch=x64
 ```
+Packaging option
+```bash
+# need check about --asar
+npx electron-packager . MyApp --platform=win32 --arch=x64 --asar
+```
 
 ## Run exe File
 Start in root directory

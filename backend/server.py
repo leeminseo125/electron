@@ -35,7 +35,7 @@ def preprocess_image(image_bytes):
 
 @app.get("/")
 async def read_root():
-    with open("../frontend/static/index.html", "r") as file:
+    with open("../frontend/static/index.html", "r", encoding='utf-8') as file:
         html_content = file.read()
     return HTMLResponse(content=html_content)
 
