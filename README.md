@@ -20,7 +20,7 @@ conda install nodejs
 Start in root directory
 ```bash
 cd backend 
-uvicorn server:app --host localhost --port 5000
+uvicorn server:app --host localhost --port 8000
 ```
 
 #### Second Terminal
@@ -47,6 +47,6 @@ npx electron-packager . MyApp --platform=win32 --arch=x64 --asar
 Start in root directory
 ```bash
 cd backend 
-uvicorn server:app --host localhost --port 5000
+uvicorn server:app --host localhost --port 8000
 ```
 Open & Use exe file while your server is running

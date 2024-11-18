@@ -3,13 +3,18 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Image Classification App</title>
+    <title>Image Classification App</title>    
     <script>
       if (window.process && process.versions['electron']) {
-        // Electron 환경
+        document.write('<link rel="icon" type="image/png" href="favicon.ico">');
+      } else {
+        document.write('<link rel="icon" type="image/png" href="/static/favicon.ico">');
+      }
+    </script>
+    <script>
+      if (window.process && process.versions['electron']) {
         document.write('<link rel="stylesheet" href="styles.css">');
       } else {
-        // 웹 환경
         document.write('<link rel="stylesheet" href="/static/styles.css">');
       }
     </script>

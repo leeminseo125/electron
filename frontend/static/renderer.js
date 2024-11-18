@@ -11,21 +11,18 @@ document.getElementById('upload-form').addEventListener('submit', async (e) => {
       return;
   }
 
-  // 이미지 미리보기
   preview.src = URL.createObjectURL(file);
   preview.style.display = 'block';
   
-  // FormData 객체 생성
   const formData = new FormData();
   formData.append('file', file);
 
   try {
       resultDiv.textContent = '분류 중...';
       
-      // 서버로 이미지 전송
       console.log('Sending file:', file.name, file.type);
 
-      const response = await fetch('http://localhost:5000/classify', {
+      const response = await fetch('http://54.180.86.10:8000/classify', {
           method: 'POST',
           body: formData,
           headers: {
