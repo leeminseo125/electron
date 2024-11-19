@@ -33,6 +33,7 @@ def preprocess_image(image_bytes):
     image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
     print(f"Original image size: ({image.size[0]}, {image.size[1]}) pixels")
     image = image.resize((224, 224), Image.Resampling.BILINEAR)
+    print(f"Resized image size: ({image.size[0]}, {image.size[1]}) pixels")
     return image
 
 @app.get("/")
