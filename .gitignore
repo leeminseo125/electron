@@ -2,5 +2,5 @@
 
 __pycache__
 
-frontend/node_modules
-frontend/MyApp-win32-x64
+node_modules
+MyApp-win32-x64
